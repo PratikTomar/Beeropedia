@@ -22,7 +22,7 @@ To run this project locally, follow these steps:
 1. Clone the repository and run below command to run
 
    ```bash
-   git clone https://github.com/PratikTomar/react-beer-app.git
+   git clone https://github.com/PratikTomar/Brewopedia.git
 
    cd Brewopedia
 
