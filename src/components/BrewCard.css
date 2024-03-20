@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-.beer-container {
+.brew-container {
   max-width: 900px;
   margin: 0 auto;
 }
@@ -20,7 +20,7 @@
   font-size: 16px;
 }
 
-.beer-list {
+.brew-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
@@ -48,7 +48,7 @@
   color: #333;
 }
 
-.beer-card {
+.brew-card {
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;
@@ -59,42 +59,48 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.beer-card:hover {
+.brew-card:hover {
   transform: translateY(-5px);
 }
 
-.beer-image {
+.brew-image {
   width: 100%;
   height: auto;
   border-radius: 8px;
   margin-bottom: 20px;
 }
 
-.beer-details {
+.brew-details {
   flex: 1;
   font-family: "Roboto", sans-serif;
 }
 
-.beer-name {
+.brew-name {
   font-size: 1.5em;
   margin-bottom: 5px;
   color: #333;
 }
 
-.beer-tagline {
+.brew-site {
   font-style: italic;
   color: #555;
+  font-size: 14px;
+  word-break: break-all;
 }
 
-.first-brewed {
+.brew-type {
   margin-top: 10px;
   color: #777;
 }
 
-.beer-description {
-  margin-top: 10px;
-  color: #333;
-  font-size: small;
+.address-container {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.address-title {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
 }
 
 input,
@@ -122,5 +128,4 @@ button:disabled {
   select {
     width: 80%;
   }
-  
 }

@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from "react";
-import BeerCard from "./BeerCard";
-import "./BeerCard.css";
+import { useDebounce } from "../hooks/useDebounce";
+import "./BrewCard.css";
+import BrewCard from "./BrewCard";
 
-const BASE_API = `https://api.punkapi.com/v2/beers`;
 
-const Beer = () => {
-  const [beer, setBeer] = useState([]);
+const BASE_API = `https://api.openbrewerydb.org/v1/breweries`;
+
+const Brew = () => {
+  const [brew, setBrew] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [perPage, setPerPage] = useState(20);
-  const [beerName, setBeerName] = useState("");
+  const [brewName, setBrewName] = useState("");
+  const debouncedSearch = useDebounce(brewName);
   const [isScrollToTop, setIsScrollToTop] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const beerNameSearch = beerName !== "" ? `&beer_name=${beerName}` : "";
+      const brewNameSearch = brewName !== "" ? `&by_name=${brewName}` : "";
       setIsLoading(true);
 
       const res = await fetch(
-        `${BASE_API}?page=${currentPage}&per_page=${perPage}${beerNameSearch}`
+        `${BASE_API}?page=${currentPage}&per_page=${perPage}${brewNameSearch}`
       );
 
       const data = await res.json();
-      setBeer(data);
+      setBrew(data);
       setIsLoading(false);
       setIsScrollToTop(true);
     };
 
     fetchData();
-  }, [currentPage, beerName, perPage]);
+}, [currentPage, debouncedSearch, perPage]);
 
   useEffect(() => {
     if (isScrollToTop) {
@@ -38,11 +41,14 @@ const Beer = () => {
   }, [isScrollToTop]);
 
   const handleChange = (e) => {
-    setBeerName(e.target.value);
+    const { value } = e.target;
+    setBrewName(value);
+
   };
 
   const handleSelect = (e) => {
-    setPerPage(e.target.value);
+    const { value } = e.target;
+    setPerPage(value);
   };
 
   const prevHandler = () => {
@@ -54,30 +60,30 @@ const Beer = () => {
   };
 
   return (
-    <div className="beer-container">
-      <h1 className="title">Beeropedia: Beer Encyclopedia</h1>
+    <div className="brew-container">
+      <h1 className="title">Brewopedia: Brew Encyclopedia</h1>
       <div className="search-container">
         <input
           type="text"
-          value={beerName}
+          value={brewName}
           onChange={handleChange}
-          placeholder="Search for beers..."
+          placeholder="Search for Brews..."
           className="search-input"
         />
-        <label htmlFor="itemsPerPage">Beers Per Page</label>
+        <label htmlFor="itemsPerPage">List Per Page</label>
         <select onChange={handleSelect}>
           <option value="" disabled={perPage > 20 ? true : false}>
             --Please choose an option--
           </option>
-          <option value="30">30 Beers per page</option>
-          <option value="50">50 Beers per page</option>
-          <option value="70">70 Beers per page</option>
+          <option value="30">30 per page</option>
+          <option value="50">50 per page</option>
+          <option value="70">70 per page</option>
         </select>
       </div>
 
-      <div className="beer-list">
-        {beer.map((item) => (
-          <BeerCard data={item} key={item.id} />
+      <div className="brew-list">
+        {brew.map((item) => (
+          <BrewCard data={item} key={item.id} />
         ))}
       </div>
       {isLoading && <p className="loading">Loading...</p>}
@@ -90,7 +96,7 @@ const Beer = () => {
           Previous
         </button>
         <button
-          disabled={beer.length < perPage}
+          disabled={brew.length < perPage}
           onClick={nextHandler}
           className="pagination-button"
         >
@@ -101,4 +107,4 @@ const Beer = () => {
   );
 };
 
-export default Beer;
+export default Brew;

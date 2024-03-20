@@ -1,12 +1,12 @@
 
 import './App.css';
-import Beer from './components/Beer';
+import Brew from './components/Brew';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Beer/>
+        <Brew/>
       </header>
     </div>
   );
