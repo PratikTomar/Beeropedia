@@ -1,19 +1,19 @@
-# React Beer App
+# React Brewinfo App
 
-This is a React application that fetches and displays a list of beers from the Punk API. The app supports pagination, search beers and allows users to customize the number of beers displayed per page.
+This is a React application that fetches and displays a list of brewinfo from the Openbrewerydb. The app supports pagination, search brewlist and allows users to customize the number of brewlist displayed per page.
 
 ## Features
 
-- Fetches and displays beers from the Punk API.
-- Search the beer.
+- Fetches and displays brewInfo from the Openbrewerydb API.
+- Search the brewlist.
 - Supports pagination with "Previous Page" and "Next Page" buttons.
-- Allows users to choose the number of beers displayed per page.
+- Allows users to choose the number of brewlist displayed per page.
 
 ## Technologies Used
 
 - React
 - JavaScript (ES6+)
-- Punk API
+- Openbrewerydb API
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ To run this project locally, follow these steps:
    ```bash
    git clone https://github.com/PratikTomar/react-beer-app.git
 
-   cd Beeropedia
+   cd Brewopedia
 
    npm install
 
